@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf import settings
 from .views import (
     PostListView,
     PostDetailView,
@@ -21,3 +22,6 @@ urlpatterns = [
     path('search/',views.search,name='search' ),
     path('about/', views.about, name='blog-about'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
