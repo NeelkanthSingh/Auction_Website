@@ -39,7 +39,7 @@ cryptography==3.4.6
 cycler==0.10.0
 Cython==0.29.21
 dbus-python==1.2.16
-debtags==2.1
+
 decorator==4.4.2
 defusedxml==0.7.0
 dicttoxml==1.7.4
