@@ -34,12 +34,6 @@ def search(request):
     paginate_by=2
     context={ 'posts':result }
     return render(request,template,context)
-   
-
-
-def getfile(request):
-   return serve(request, 'File')
-
 
 class PostListView(ListView):
     model = Post
