@@ -66,10 +66,10 @@ class PostDetailView(DetailView):
     template_name = 'blog/post_detail.html'
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-    
+
     model = Post
     template_name = 'blog/post_form.html'
-    fields = ['title', 'content', 'file']
+    fields = ['title', 'content', 'file', 'price', 'increment']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -77,7 +77,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 @login_required
 def paycheck(request):
-    
+
     author = Profile.objects.get(user=request.user)
     if author.purchased:
         return redirect('post-create')
