@@ -21,6 +21,7 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('search/',views.search,name='search' ),
     path('about/', views.about, name='blog-about'),
+    path('post/<int:pk>/increment/', views.increment, name='increment'),
 ]
 
 if settings.DEBUG:

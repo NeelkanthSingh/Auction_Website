@@ -5,13 +5,23 @@
    <a href="{{ object.author.profile.image.url }} " target="_blank"> <img src="{{ object.author.profile.image.url }}  " alt="" class="article-img rounded-circle img-thumbnail img-fluid">
    </a>
     <div class="media-body">
-      <div class="">
+      <div style="display: block" class="">
         <div class="d-flex justify-content-between">
         <a class="mr-2 mt-0 mb-0  text-dark" href="{% url 'user-posts' object.author.username  %}"><h3>{{ object.author }}</h3></a>
         <small class="text-muted  text-align-right">{{ object.date_upload }}</small>
+        {% if user.is_authenticated %}
+        {% if object.author != user %}
+        <a style="color: rgb(13, 36, 62); font-size: x-large;right: 0px;margin: auto;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;margin-right: 3px;">Price: {{ object.price }}</a>
+        <a style="position: sticky;right: 0;" class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'increment' object.id %}">{{ object.increment }}</a>
+        {% endif %}
+       
+        {% if object.author == user %}
+        <a style="color: rgb(255, 30, 0); font-size: larger;">Price: {{ object.price }}</a>
+        {% endif %}
+        {% endif %}
         </div>
         {% if object.author != user %}
-          <div class="form-group mt-0 pt-0 d-flex justify-content-end">          
+          <div class="form-group mt-0 pt-0 d-flex justify-content-end">
             <a href="{{ object.file.url }}" download class="btn btn-primary flex-last" type="submit"><i class="fas fa-download"></i> Downlaod</a>
           </div>
         {% endif %}

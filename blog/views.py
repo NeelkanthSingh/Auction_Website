@@ -54,6 +54,13 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
+def increment(request, pk):
+    post = Post.objects.get(id=pk)
+    post.price = post.price + post.increment
+    post.bidder = request.user.email
+    post.save()
+    return redirect('../')
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
